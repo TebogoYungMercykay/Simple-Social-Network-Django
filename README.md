@@ -4,6 +4,8 @@
 
 > A modern, secure social networking application built with Django following MVC architecture.
 
+**[Watch the Demo](docs/demo.mp4)** - See the simple social network application in action!
+
 ## Features
 
 ### **Advanced Authentication System**
