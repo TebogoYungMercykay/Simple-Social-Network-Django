@@ -29,6 +29,8 @@
 - User-friendly error messages and success notifications
 - Responsive Bootstrap-based UI
 
+<a href="docs/demo.mp4">Video Link</a>
+
 ## Architecture
 
 **Modular MVC Pattern** with clean separation of concerns:
