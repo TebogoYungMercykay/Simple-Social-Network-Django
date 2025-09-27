@@ -2,7 +2,7 @@
 
 <img src="./docs/images/read.png" alt="README IMAGE" width="100%" height="40%" />
 
-> A modern, secure social networking application built with Django following MVC architecture and best practices.
+> A modern, secure social networking application built with Django following MVC architecture.
 
 ## Features
 
@@ -132,16 +132,16 @@ Access the Django admin at `http://127.0.0.1:8000/admin/` to:
 
 ## API Endpoints
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/` | GET | Home page with recent posts |
-| `/register/` | GET/POST | User registration |
-| `/login/` | GET/POST | User authentication |
-| `/logout/` | POST | User logout |
-| `/verify-email/<token>/` | GET | Email verification |
-| `/resend-verification/<user_id>/` | GET | Resend verification email |
-| `/user/<user_id>/timeline/` | GET | User timeline |
-| `/create-post/` | POST | Create new post |
+| Endpoint                            | Method   | Description                 |
+| ----------------------------------- | -------- | --------------------------- |
+| `/`                               | GET      | Home page with recent posts |
+| `/register/`                      | GET/POST | User registration           |
+| `/login/`                         | GET/POST | User authentication         |
+| `/logout/`                        | POST     | User logout                 |
+| `/verify-email/<token>/`          | GET      | Email verification          |
+| `/resend-verification/<user_id>/` | GET      | Resend verification email   |
+| `/user/<user_id>/timeline/`       | GET      | User timeline               |
+| `/create-post/`                   | POST     | Create new post             |
 
 ## Configuration
 
@@ -175,7 +175,9 @@ EMAIL_HOST_PASSWORD=your-app-password
 ```
 
 ### Logging Configuration
+
 Application logs are stored in the `logs/` directory:
+
 - `auth.log` - Authentication events
 - `debug.log` - Debug information
 - `error.log` - Error messages
