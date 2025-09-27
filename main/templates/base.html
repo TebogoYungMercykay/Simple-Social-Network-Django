@@ -12,16 +12,18 @@
 <body class="bg-light">
     <!-- Navigation -->
     {% if user.is_authenticated %}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'home' %}">
-                <i class="fas fa-users"></i> Social Network
+            <a class="navbar-brand fw-bold fs-4" href="{% url 'home' %}">
+                <i class="fas fa-users me-2"></i> Social Network
             </a>
             
-            <div class="navbar-nav ms-auto">
-                <span class="navbar-text me-3">Hello, {{ user.username }}!</span>
-                <a class="nav-link" href="{% url 'logout' %}">
-                    <i class="fas fa-sign-out-alt"></i> Logout
+            <div class="navbar-nav ms-auto d-flex align-items-center">
+                <span class="navbar-text me-3 bg-light bg-opacity-25 px-3 py-2 rounded-pill">
+                    <i class="fas fa-user-circle me-2"></i>Hello, <strong>{{ user.username }}</strong>!
+                </span>
+                <a class="nav-link btn btn-outline-secondary rounded-pill px-3" href="{% url 'logout' %}">
+                    <i class="fas fa-sign-out-alt me-1 text-bold"></i> <strong>Logout</strong>
                 </a>
             </div>
         </div>
@@ -30,9 +32,9 @@
 
     <!-- Messages -->
     {% if messages %}
-    <div class="container mt-3">
+    <div class="position-fixed top-0 start-50 translate-middle-x mt-3" style="z-index: 1050; width: 90%; max-width: 500px;">
         {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow" role="alert">
             {{ message }}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
