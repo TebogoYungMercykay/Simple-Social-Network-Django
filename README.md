@@ -1,6 +1,6 @@
 # Django Social Network
 
-!["README IMAGE"](./docs/images/read.png)
+<img src="./docs/images/read.png" alt="README IMAGE" width="100%" height="40%" />
 
 > A modern, secure social networking application built with Django following MVC architecture and best practices.
 
