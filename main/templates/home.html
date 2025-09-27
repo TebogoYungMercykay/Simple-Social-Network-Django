@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %} Home Page {% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Create Post Section -->
+    <div class="col-12 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h4><i class="fas fa-edit"></i> What's on your mind?</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" action="{% url 'create_post' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <textarea class="form-control" name="message" rows="3" 
+                                placeholder="Share your thoughts..." maxlength="500" required></textarea>
+                        <div class="form-text">Maximum 500 characters</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Post
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Users List -->
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-users"></i> All Users</h5>
+            </div>
+            <div class="card-body">
+                {% for user_item in users %}
+                <div class="d-flex align-items-center mb-2">
+                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" 
+                         style="width: 40px; height: 40px;">
+                        {{ user_item.username|first|upper }}
+                    </div>
+                    <div class="flex-grow-1">
+                        <a href="{% url 'user_timeline' user_item.id %}" class="text-decoration-none">
+                            <strong>{{ user_item.username }}</strong>
+                        </a>
+                        <small class="text-muted d-block">
+                            {{ user_item.posts.count }} post{{ user_item.posts.count|pluralize }}
+                        </small>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="text-muted">No users found.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Posts -->
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-stream"></i> Recent Posts</h5>
+            </div>
+            <div class="card-body">
+                {% for post in recent_posts %}
+                <div class="border-bottom pb-3 mb-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center me-3" 
+                             style="width: 35px; height: 35px;">
+                            {{ post.user.username|first|upper }}
+                        </div>
+                        <div>
+                            <a href="{% url 'user_timeline' post.user.id %}" class="text-decoration-none">
+                                <strong>{{ post.user.get_full_name|default:post.user.username }}</strong>
+                            </a>
+                            <small class="text-muted d-block">@{{ post.user.username }}</small>
+                            <small class="text-muted d-block">{{ post.timestamp|timesince }} ago</small>
+                        </div>
+                    </div>
+                    <p class="mb-0">{{ post.message }}</p>
+                </div>
+                {% empty %}
+                <p class="text-muted">No posts yet. Be the first to post something!</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
