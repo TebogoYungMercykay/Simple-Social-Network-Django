@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 from api.posts.models import Post
+from django.db.models import Count
 
 @login_required
 def home_view(request):
@@ -15,7 +18,10 @@ def home_view(request):
         HttpResponse: Home page template
     """
 
-    users = User.objects.all().order_by('username')
+    users = User.objects.annotate(
+        post_count=Count('posts')
+    ).order_by('username')
+    
     recent_posts = Post.objects.all()[:10]
     
     context = {
@@ -24,3 +30,6 @@ def home_view(request):
     }
 
     return render(request, 'home.html', context)
+
+# mahofas877@bllibl.com / thabokk
+# @Thabk#66hdy
