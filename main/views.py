@@ -30,6 +30,3 @@ def home_view(request):
     }
 
     return render(request, 'home.html', context)
-
-# mahofas877@bllibl.com / thabokk
-# @Thabk#66hdy
